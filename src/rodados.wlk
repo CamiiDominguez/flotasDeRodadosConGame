@@ -17,7 +17,8 @@ class RenaultKwid {
 }
 
 object trafic {
-	
+	var property interior = comodo
+	var property motor = bataton
 	
 	method capacidad() { return interior.capacidad() }
 	method velocidadMaxima() { return motor.velocidadMaxima() }
@@ -37,16 +38,7 @@ class AutosEspeciales {
 	method peso() = peso 
 }
 
-// OBJETOS EXTRA
-object interior {	
-	var interiorComodo = true
-	
-	method capacidad() {return if (interiorComodo) comodo.capacidad() else popular.capacidad()  }
-	method peso() { return if (interiorComodo) comodo.peso() else popular.peso() }
-	method cambiarInterior() {
-		interiorComodo = not interiorComodo 
-	}
-}
+// OBJETOS EXTRA PARA LA TRAFIC
 object comodo {
 	method capacidad() = 5
 	method peso() = 700	
@@ -55,15 +47,7 @@ object popular {
 	method capacidad() = 12
 	method peso() = 1000
 }
-object motor {
-	var motorPulenta = true
-	
-	method velocidadMaxima() { return if (motorPulenta) pulenta.velocidadMaxima() else bataton.velocidadMaxima() }
-	method peso() { return if (motorPulenta) pulenta.peso() else bataton.peso() }
-	method cambiarMotor() {
-		motorPulenta = not motorPulenta 
-	}
-}
+
 object pulenta {
 	method velocidadMaxima() = 130
 	method peso() = 800
