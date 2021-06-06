@@ -1,0 +1,34 @@
+import pedidos.*
+import dependencias.*
+import rodados.*
+	
+describe "Pedido" {	
+	const pedido1 = new Pedido(distanciaARecorrer = 960, cantidadPasajeros = 4, tiempoMaximoDeViaje = 8)
+	const pedido2 = new Pedido(distanciaARecorrer = 960, cantidadPasajeros = 6, tiempoMaximoDeViaje = 8)
+	const pedido3 = new Pedido(distanciaARecorrer = 960, cantidadPasajeros = 4, tiempoMaximoDeViaje = 6)
+	
+	const cachito = new ChevroletCorsa(color = "Rojo")
+	
+	fixture {
+		pedido1.agregarColorIncompatible("Azul")
+		pedido1.agregarColorIncompatible("Negro")
+		pedido2.agregarColorIncompatible("Rojo")
+		
+	}
+	
+	test "Primer pedido" {
+		assert.equals(120, pedido1.velocidadRequerida())
+		assert.that(pedido1.pedidoSatisfactorio(cachito))
+
+	}
+
+	test "Modifico color al primer pedido" {
+		assert.equals(120, pedido2.velocidadRequerida())
+		assert.notThat(pedido2.pedidoSatisfactorio(cachito))
+	}
+
+	test "Modifico tiempo máximo al primer pedido" {
+		assert.equals(160, pedido3.velocidadRequerida())
+		assert.notThat(pedido3.pedidoSatisfactorio(cachito))
+	}
+}

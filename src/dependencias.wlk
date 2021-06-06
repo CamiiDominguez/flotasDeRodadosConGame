@@ -1,7 +1,9 @@
 import rodados.*
+import pedidos.*
 
 class Dependencia {
 	const flota = []
+	const pedidos = []
 	var cantidadEmpleados = 0
 	
 	method agregarAFlota(rodado) { flota.add(rodado) }  
@@ -14,4 +16,11 @@ class Dependencia {
 	method esGrande() = cantidadEmpleados >= 40 and self.tamanioDeFlota() >= 5	
 	method informarEmpleados(cantidad) { cantidadEmpleados = cantidad }
 	method tamanioDeFlota() = flota.size()
+	method agregarAPedidos(pedido) { pedidos.add(pedido) }  
+	method quitarDePedidos(pedido) { pedidos.remove(pedido) }
+	method totalPasajeros() = pedidos.sum({p => p.cantidadPasajeros()})
+	method flotaSatisfacePedido(pedido) = flota.all({f => pedido.pedidoSatisfactorio(f)})
+	method pedidosNoSatisfechos() = pedidos.filter({p => not self.flotaSatisfacePedido(p)})
+	method colorIncompatible(color) = pedidos.any({p => p.coloresIncompatibles() == color})
+	method relajarTodosLosPedidos() { pedidos.forEach({p => p.relajar()}) }
 }
