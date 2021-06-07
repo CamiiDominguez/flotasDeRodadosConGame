@@ -1,10 +1,18 @@
+import wollok.game.*
+
 class ChevroletCorsa {
 	var property color = "color"
+	var property position = game.at(0,0)
+	var property posicionesGuardadas = [position]
 	
 	method capacidad() = 4 
 	method velocidadMaxima() = 150 
 	method color() = color 
 	method peso() = 1300 	
+	method pasoPor(posicion) = posicionesGuardadas.contains({posicion}) 
+	method filasPasadas() = posicionesGuardadas.map({p => p.x()})
+	method pasoPorFila(numero) = self.filasPasadas().filter({numero}) 
+	method recorrioFilas(lista_de_numeros) = lista_de_numeros.all({l => self.pasoPorFila(l)}) 
 }
 
 class RenaultKwid {
