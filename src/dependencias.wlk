@@ -10,7 +10,7 @@ class Dependencia {
 	method quitarDeFlota(rodado) { flota.remove(rodado) }
 	method pesoTotalFlota() = flota.map({f => f.peso()}).sum() 
 	method estaBienEquipada() = self.tamanioDeFlota() >= 3 and flota.all({f => f.velocidadMaxima() >= 100 })   
-	method capacidadTotalEnColor(color) = flota.filter({f => f.color() == color}).map({f => f.capacidad()}).sum()
+	method capacidadTotalEnColor(color) = flota.filter({f => f.color() == color}).sum({f => f.capacidad()})
 	method colorDelRodadoMasRapido() = flota.max({f => f.velocidadMaxima()}).color()
 	method capacidadFaltante() = cantidadEmpleados - flota.map({f => f.capacidad()}).sum() 
 	method esGrande() = cantidadEmpleados >= 40 and self.tamanioDeFlota() >= 5	

@@ -14,7 +14,7 @@ class ChevroletCorsa {
 	method guardarPosicion() { posicionesGuardadas.add(self.position()) }	
 	method pasoPor(posicion) = posicionesGuardadas.contains({posicion}) 
 	method filasPasadas() = posicionesGuardadas.map({p => p.x()})
-	method pasoPorFila(numero) = self.filasPasadas().filter({numero}) //Esto probablemente no funcione, pero no se me ocurrio otra forma de hacerlo
+	method pasoPorFila(numero) = self.filasPasadas().any({numero}) //Esto probablemente no funcione, pero no se me ocurrio otra forma de hacerlo
 	method recorrioFilas(lista_de_numeros) = lista_de_numeros.all({l => self.pasoPorFila(l)})
 	method pintarRojo() { image = rojo.image() }
 	method pintarAzul() { image = azul.image() }
@@ -61,11 +61,6 @@ class AutosEspeciales {
 	var property velocidadMaxima
 	var property color
 	var property peso
-	
-	method capacidad() = capacidad 
-	method velocidadMaxima() = velocidadMaxima 
-	method color() = color 
-	method peso() = peso 
 }
 
 // OBJETOS EXTRA PARA LA TRAFIC
